@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Leadoscope clinic CRM — user dashboard for appointments, requests, and analytics." />
+  <title>User dashboard — Leadoscope Clinic CRM</title>
+  <link rel="stylesheet" href="main.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body class="page-dashboard dashboard-page">
+  <header class="app-header">
+    <div class="app-header-inner">
+      <div class="app-header-brand">
+        <a href="index.html" class="logo" aria-label="Leadoscope — home">
+          <img src="img/logo.png" alt="Leadoscope" decoding="async" />
+        </a>
+        <p class="app-header-tagline">Clinic CRM — user dashboard</p>
+      </div>
+      <div class="app-header-user">
+        <span>Anna Kovacs, Administrator</span>
+        <a href="index.html" class="btn btn-outline btn-sm">Log out</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard-layout">
+    <aside class="sidebar" aria-label="Dashboard sections">
+      <nav class="sidebar-nav" role="tablist">
+        <button type="button" class="sidebar-item sidebar-item--active" role="tab" aria-selected="true" data-tab-target="tab-profile" id="tab-btn-profile">
+          Profile
+        </button>
+        <button type="button" class="sidebar-item" role="tab" aria-selected="false" data-tab-target="tab-dashboard" id="tab-btn-dashboard">
+          Dashboard
+        </button>
+        <button type="button" class="sidebar-item" role="tab" aria-selected="false" data-tab-target="tab-requests" id="tab-btn-requests">
+          Requests
+        </button>
+        <button type="button" class="sidebar-item" role="tab" aria-selected="false" data-tab-target="tab-analytics" id="tab-btn-analytics">
+          Analytics
+        </button>
+        <button type="button" class="sidebar-item" role="tab" aria-selected="false" data-tab-target="tab-settings" id="tab-btn-settings">
+          Settings &amp; Integration
+        </button>
+      </nav>
+    </aside>
+
+    <div class="dashboard-main">
+      <section id="tab-profile" class="tab-content tab-content--active" role="tabpanel" aria-labelledby="tab-btn-profile">
+        <h1 class="dashboard-panel-title">Profile &amp; billing</h1>
+        <p class="dashboard-panel-lead">
+          Clinic profile, legal details, and your current subscription. Changes here affect invoices and access for your team.
+        </p>
+
+        <div class="profile-block">
+          <h3>Clinic &amp; responsible person</h3>
+          <p><strong>Riverside Medical Center</strong> — private outpatient clinic, 2 locations.</p>
+          <p>Account owner: <strong>Dr. Elena Morales</strong>, Medical Director (elena.morales@riverside-clinic.example).</p>
+        </div>
+
+        <div class="profile-block">
+          <h3>Legal &amp; billing details</h3>
+          <div class="legal-note">
+            Riverside Medical LLC · Tax ID: 12-3456789<br />
+            1200 Harbor Way, Suite 400, Portland, OR 97201, United States<br />
+            Billing contact: finance@riverside-clinic.example · Invoices issued in USD, net 14 days.
+          </div>
+        </div>
+
+        <div class="profile-block">
+          <h3>Current plan</h3>
+          <div class="tariff-card">
+            <p class="tariff-name">Clinic Standard</p>
+            <p class="tariff-meta">Paid through <strong>March 15, 2026</strong> · 42 days remaining on this billing cycle.</p>
+            <ul class="tariff-list">
+              <li>Up to 25 staff seats with role-based access</li>
+              <li>Unlimited patient records and appointment scheduling</li>
+              <li>SMS / email reminders (fair-use bundle included)</li>
+              <li>Multi-location scheduling and shared patient directory</li>
+              <li>API access for website forms and third-party tools</li>
+            </ul>
+            <p class="tariff-meta">Included requests this month: <strong>1,240 / 2,000</strong> used.</p>
+          </div>
+        </div>
+
+        <a href="#" class="btn btn-primary">Payment / Renew</a>
+      </section>
+
+      <section id="tab-dashboard" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-dashboard" hidden>
+        <h1 class="dashboard-panel-title">Overview</h1>
+        <p class="dashboard-panel-lead">
+          Snapshot of inbound requests and pipeline health for your medical center today.
+        </p>
+
+        <div class="metrics-row">
+          <article class="metric-card">
+            <p class="metric-value">184</p>
+            <p class="metric-label">Total requests</p>
+            <p class="metric-hint">All channels for the current month.</p>
+          </article>
+          <article class="metric-card">
+            <p class="metric-value">42</p>
+            <p class="metric-label">In progress</p>
+            <p class="metric-hint">Awaiting confirmation, prep, or first visit.</p>
+          </article>
+          <article class="metric-card">
+            <p class="metric-value">128</p>
+            <p class="metric-label">Closed</p>
+            <p class="metric-hint">Completed visits or declined / archived.</p>
+          </article>
+          <article class="metric-card">
+            <p class="metric-value">14</p>
+            <p class="metric-label">Overdue follow-up</p>
+            <p class="metric-hint">New this week: <strong>31</strong> requests.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="tab-requests" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-requests" hidden>
+        <h1 class="dashboard-panel-title">Requests</h1>
+        <p class="dashboard-panel-lead">
+          Patient inquiries and appointment requests from your website, ads, and front desk.
+        </p>
+
+        <div class="requests-toolbar">
+          <button type="button" class="btn btn-primary">New request</button>
+          <div class="field">
+            <label for="filter-status">Status</label>
+            <select id="filter-status" name="status">
+              <option>All</option>
+              <option>New</option>
+              <option>In progress</option>
+              <option>Closed</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="filter-doctor">Doctor / service line</label>
+            <select id="filter-doctor" name="doctor">
+              <option>All</option>
+              <option>Dr. Smith — General practice</option>
+              <option>Dr. Patel — Cardiology</option>
+              <option>Dr. Nguyen — Dermatology</option>
+            </select>
+          </div>
+          <div class="field" style="flex: 1; min-width: 200px">
+            <label for="search-requests">Search</label>
+            <input id="search-requests" type="search" name="q" placeholder="Patient name or request ID" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="requests-table-wrap">
+          <table class="requests-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Patient name</th>
+                <th>Service / doctor</th>
+                <th>Status</th>
+                <th>Created at</th>
+                <th>Last update</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#REQ-8841</td>
+                <td>James O’Connell</td>
+                <td>Annual check-up · Dr. Smith</td>
+                <td><span class="status-pill status-new">New</span></td>
+                <td>Feb 10, 2026 09:12</td>
+                <td>Feb 10, 2026 09:12</td>
+              </tr>
+              <tr>
+                <td>#REQ-8840</td>
+                <td>Maria Santos</td>
+                <td>ECG follow-up · Dr. Patel</td>
+                <td><span class="status-pill status-progress">In progress</span></td>
+                <td>Feb 9, 2026 14:40</td>
+                <td>Feb 10, 2026 08:05</td>
+              </tr>
+              <tr>
+                <td>#REQ-8839</td>
+                <td>Wei Chen</td>
+                <td>Dermatology consult · Dr. Nguyen</td>
+                <td><span class="status-pill status-progress">In progress</span></td>
+                <td>Feb 9, 2026 11:22</td>
+                <td>Feb 9, 2026 16:18</td>
+              </tr>
+              <tr>
+                <td>#REQ-8838</td>
+                <td>Sophie Martin</td>
+                <td>Vaccination · Dr. Smith</td>
+                <td><span class="status-pill status-closed">Closed</span></td>
+                <td>Feb 8, 2026 10:05</td>
+                <td>Feb 9, 2026 09:30</td>
+              </tr>
+              <tr>
+                <td>#REQ-8837</td>
+                <td>David Okonkwo</td>
+                <td>New patient intake · Dr. Patel</td>
+                <td><span class="status-pill status-new">New</span></td>
+                <td>Feb 8, 2026 08:50</td>
+                <td>Feb 8, 2026 08:50</td>
+              </tr>
+              <tr>
+                <td>#REQ-8836</td>
+                <td>Lisa Berg</td>
+                <td>Cosmetic consultation · Dr. Nguyen</td>
+                <td><span class="status-pill status-closed">Closed</span></td>
+                <td>Feb 7, 2026 15:33</td>
+                <td>Feb 8, 2026 11:02</td>
+              </tr>
+              <tr>
+                <td>#REQ-8835</td>
+                <td>Tomáš Novák</td>
+                <td>Physiotherapy referral · Dr. Smith</td>
+                <td><span class="status-pill status-progress">In progress</span></td>
+                <td>Feb 7, 2026 09:18</td>
+                <td>Feb 10, 2026 07:44</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="tab-analytics" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-analytics" hidden>
+        <h1 class="dashboard-panel-title">Analytics</h1>
+        <p class="dashboard-panel-lead">
+          Period summaries for requests, conversion to attended visits, and rough utilization by doctor.
+        </p>
+
+        <div class="analytics-filters">
+          <button type="button" class="period-btn period-btn--active">Month</button>
+          <button type="button" class="period-btn">Quarter</button>
+          <label class="field" style="margin: 0">
+            <span class="sr-only">From</span>
+            <input type="date" value="2026-02-01" aria-label="Custom start date" />
+          </label>
+          <label class="field" style="margin: 0">
+            <span class="sr-only">To</span>
+            <input type="date" value="2026-02-28" aria-label="Custom end date" />
+          </label>
+        </div>
+
+        <div class="analytics-stats">
+          <div class="analytics-stat-block">
+            <h4>Requests in period</h4>
+            <p class="stat-value">612</p>
+            <p class="tariff-meta">Website 54% · Phone 28% · Partner referrals 18%</p>
+          </div>
+          <div class="analytics-stat-block">
+            <h4>Booking → attended visit</h4>
+            <p class="stat-value">81%</p>
+            <p class="tariff-meta">Scheduled appointments that resulted in a completed visit (excl. same-day cancels).</p>
+          </div>
+          <div class="analytics-stat-block">
+            <h4>Doctor / room load (index)</h4>
+            <p class="tariff-meta">Relative share of booked slots vs. capacity this month.</p>
+            <div class="bar-line-wrap">
+              <div class="bar-line-label"><span>Dr. Smith</span><span>78%</span></div>
+              <div class="bar-line-track"><div class="bar-line-fill" style="width: 78%"></div></div>
+            </div>
+            <div class="bar-line-wrap">
+              <div class="bar-line-label"><span>Dr. Patel</span><span>92%</span></div>
+              <div class="bar-line-track"><div class="bar-line-fill" style="width: 92%"></div></div>
+            </div>
+            <div class="bar-line-wrap">
+              <div class="bar-line-label"><span>Exam rooms (avg)</span><span>64%</span></div>
+              <div class="bar-line-track"><div class="bar-line-fill" style="width: 64%"></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tab-settings" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-settings" hidden>
+        <h1 class="dashboard-panel-title">Settings &amp; integration</h1>
+        <p class="dashboard-panel-lead">
+          Connect your website booking form and other tools using your clinic API key. Rotate keys from this screen when staff changes.
+        </p>
+
+        <div class="settings-section">
+          <h3>API key</h3>
+          <p>Keep this secret. Use HTTPS only. Keys can be revoked instantly if exposed.</p>
+          <div class="api-key-row">
+            <code id="api-key-sample">pk_test_xxxxxxxxxxxxxx</code>
+            <button type="button" class="btn btn-outline btn-sm">Copy</button>
+          </div>
+        </div>
+
+        <div class="settings-section">
+          <h3>How to integrate a form on your website</h3>
+          <p>
+            Point your HTML form at the Leadoscope ingest endpoint. Use <code>POST</code> with <code>application/x-www-form-urlencoded</code> or
+            <code>application/json</code> (see API reference in your contract). Always collect explicit consent for medical contact where required.
+          </p>
+          <div class="code-block">
+            <pre><code>&lt;form action="https://api.leadoscope.example/v1/clinics/YOUR_CLINIC_ID/leads"
+      method="post"&gt;
+  &lt;input type="hidden" name="api_key" value="YOUR_PUBLIC_FORM_KEY" /&gt;
+  &lt;label&gt;Full name &lt;input name="patient_name" required /&gt;&lt;/label&gt;
+  &lt;label&gt;Phone &lt;input name="phone" type="tel" required /&gt;&lt;/label&gt;
+  &lt;label&gt;Service &lt;select name="service"&gt;…&lt;/select&gt;&lt;/label&gt;
+  &lt;label&gt;
+    &lt;input type="checkbox" name="consent" value="1" required /&gt;
+    I agree to be contacted about my appointment.
+  &lt;/label&gt;
+  &lt;button type="submit"&gt;Request appointment&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+          </div>
+          <p><strong>Required fields:</strong></p>
+          <ul class="field-list">
+            <li><code>patient_name</code> — full name as it should appear in the CRM.</li>
+            <li><code>phone</code> — primary contact number for reminders.</li>
+            <li><code>service</code> — service line or reason for visit (maps to routing rules).</li>
+            <li><code>consent</code> — affirmative consent flag for outreach (checkbox or equivalent).</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      var buttons = document.querySelectorAll(".sidebar-item[data-tab-target]");
+      var panels = document.querySelectorAll(".tab-content");
+
+      function activateTab(targetId) {
+        buttons.forEach(function (btn) {
+          var isActive = btn.getAttribute("data-tab-target") === targetId;
+          btn.classList.toggle("sidebar-item--active", isActive);
+          btn.setAttribute("aria-selected", isActive ? "true" : "false");
+        });
+        panels.forEach(function (panel) {
+          var isActive = panel.id === targetId;
+          panel.classList.toggle("tab-content--active", isActive);
+          panel.toggleAttribute("hidden", !isActive);
+        });
+      }
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var id = btn.getAttribute("data-tab-target");
+          if (id) activateTab(id);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
