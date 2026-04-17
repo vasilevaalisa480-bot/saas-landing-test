@@ -7,6 +7,7 @@
   <title>User dashboard — Leadoscope Clinic CRM</title>
   <link rel="stylesheet" href="main.css" />
   <link rel="stylesheet" href="dashboard.css" />
+  <link rel="stylesheet" href="request-modal.css" />
 </head>
 <body class="page-dashboard dashboard-page">
   <header class="app-header">
@@ -123,7 +124,7 @@
         </p>
 
         <div class="requests-toolbar">
-          <button type="button" class="btn btn-primary">New request</button>
+          <button type="button" class="btn btn-primary" id="open-request-modal">Новая заявка</button>
           <div class="field">
             <label for="filter-status">Status</label>
             <select id="filter-status" name="status">
@@ -318,31 +319,139 @@
     </div>
   </main>
 
-  <script>
-    (function () {
-      var buttons = document.querySelectorAll(".sidebar-item[data-tab-target]");
-      var panels = document.querySelectorAll(".tab-content");
+  <!-- Модальное окно: карточка заявки (универсальный UI) -->
+  <div
+    class="request-modal"
+    id="request-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-hidden="true"
+    aria-labelledby="request-modal-title-text"
+  >
+    <div class="request-modal__backdrop" data-request-modal-close tabindex="-1"></div>
+    <div class="request-modal__card" lang="ru">
+      <header class="request-modal__header">
+        <h2 class="request-modal__title" id="request-modal-title-text">Заявка</h2>
+        <div class="request-modal__header-right">
+          <span class="request-modal__number">Заявка №1243</span>
+          <button
+            type="button"
+            class="request-modal__close"
+            data-request-modal-close
+            aria-label="Закрыть"
+          >
+            &times;
+          </button>
+        </div>
+      </header>
 
-      function activateTab(targetId) {
-        buttons.forEach(function (btn) {
-          var isActive = btn.getAttribute("data-tab-target") === targetId;
-          btn.classList.toggle("sidebar-item--active", isActive);
-          btn.setAttribute("aria-selected", isActive ? "true" : "false");
-        });
-        panels.forEach(function (panel) {
-          var isActive = panel.id === targetId;
-          panel.classList.toggle("tab-content--active", isActive);
-          panel.toggleAttribute("hidden", !isActive);
-        });
-      }
+      <div class="request-modal__body">
+        <form class="request-form" id="request-form">
+          <div class="request-form__field">
+            <label class="request-form__label" for="request-id">Номер заявки</label>
+            <input
+              class="request-form__input"
+              type="text"
+              id="request-id"
+              name="request_id"
+              value="1243"
+              readonly
+              aria-readonly="true"
+            />
+          </div>
 
-      buttons.forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          var id = btn.getAttribute("data-tab-target");
-          if (id) activateTab(id);
-        });
-      });
-    })();
-  </script>
+          <div class="request-form__field">
+            <label class="request-form__label" for="request-fullname">ФИО</label>
+            <input
+              class="request-form__input"
+              type="text"
+              id="request-fullname"
+              name="full_name"
+              placeholder="Иванов Иван Иванович"
+              autocomplete="name"
+              required
+            />
+          </div>
+
+          <div class="request-form__field">
+            <label class="request-form__label" for="request-date">Дата</label>
+            <input class="request-form__input" type="date" id="request-date" name="request_date" required />
+          </div>
+
+          <div class="request-form__field">
+            <label class="request-form__label" for="request-service">Услуга</label>
+            <select class="request-form__select" id="request-service" name="service" required>
+              <option value="" disabled selected>Выберите услугу</option>
+              <option value="consultation">Консультация</option>
+              <option value="service_onboarding">Подключение сервиса</option>
+              <option value="tech_support">Техническая поддержка</option>
+            </select>
+          </div>
+
+          <div class="request-form__field">
+            <label class="request-form__label" for="request-description">Описание проблемы</label>
+            <textarea
+              class="request-form__textarea"
+              id="request-description"
+              name="description"
+              placeholder="Кратко опишите суть обращения"
+              rows="4"
+            ></textarea>
+          </div>
+
+          <div class="request-form__field">
+            <label class="request-form__label" for="request-status">Статус</label>
+            <select class="request-form__select" id="request-status" name="status" required>
+              <option value="new">Новая</option>
+              <option value="in_progress">В работе</option>
+              <option value="done">Завершена</option>
+              <option value="cancelled">Отменена</option>
+            </select>
+          </div>
+
+          <div class="request-form__field">
+            <label class="request-form__label" for="request-specialist">Специалист</label>
+            <select class="request-form__select" id="request-specialist" name="specialist" required>
+              <option value="" disabled selected>Назначить специалиста</option>
+              <option value="ivanov">Иванов А.П.</option>
+              <option value="petrova">Петрова М.С.</option>
+            </select>
+          </div>
+
+          <div class="request-form__field">
+            <label class="request-form__label" for="request-comment">Комментарий</label>
+            <textarea
+              class="request-form__textarea"
+              id="request-comment"
+              name="comment"
+              placeholder="Внутренний комментарий по заявке"
+              rows="3"
+            ></textarea>
+          </div>
+
+          <div class="request-form__field">
+            <label class="request-form__label" for="request-manager">Менеджер (кто принял заявку)</label>
+            <select class="request-form__select" id="request-manager" name="manager">
+              <option value="">Не назначен</option>
+              <option value="sidorov">Сидоров П.В.</option>
+              <option value="kozlova">Козлова А.И.</option>
+              <option value="volkov">Волков Д.Е.</option>
+            </select>
+          </div>
+        </form>
+      </div>
+
+      <footer class="request-modal__footer">
+        <button type="button" class="request-modal__button request-modal__button--secondary" id="request-modal-cancel" data-request-modal-close">
+          Отмена
+        </button>
+        <button type="button" class="request-modal__button request-modal__button--primary" id="request-modal-save">
+          Сохранить
+        </button>
+      </footer>
+    </div>
+  </div>
+
+  <script src="dashboard.js" defer></script>
 </body>
 </html>
