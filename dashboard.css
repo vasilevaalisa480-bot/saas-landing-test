@@ -332,6 +332,16 @@
   background: #fafcff;
 }
 
+.requests-table__actions {
+  text-align: right;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.requests-table__actions .btn {
+  white-space: nowrap;
+}
+
 .status-pill {
   display: inline-block;
   padding: 3px 10px;
