@@ -89,13 +89,21 @@
   }
 
   .logo {
-    font-weight: 800;
-    font-size: 1.2rem;
-    letter-spacing: 0.2px;
+    display: inline-flex;
+    align-items: center;
+    line-height: 0;
+    flex-shrink: 0;
   }
 
-  .logo span {
-    color: var(--primary);
+  .logo img {
+    height: 36px;
+    width: auto;
+    max-width: min(200px, 50vw);
+    object-fit: contain;
+  }
+
+  .logo:hover img {
+    opacity: 0.92;
   }
 
   .nav-wrap {
