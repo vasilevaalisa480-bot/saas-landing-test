@@ -1,5 +1,5 @@
 /**
- * Личный кабинет: вкладки + модальное окно заявки.
+ * Личный кабинет: вкладки + модальное окно заявки + фильтры и активность.
  * Подключайте после разметки страницы (defer или перед </body>).
  */
 (function () {
@@ -33,6 +33,7 @@
   var modal = document.getElementById("request-modal");
   var form = document.getElementById("request-form");
 
+  // Если модалки нет, выходим, но вкладки уже инициализированы
   if (!modal || !form) return;
 
   var openBtn = document.getElementById("open-request-modal");
@@ -56,7 +57,13 @@
     var d = new Date();
     var m = String(d.getMonth() + 1);
     var day = String(d.getDate());
-    return d.getFullYear() + "-" + (m.length < 2 ? "0" + m : m) + "-" + (day.length < 2 ? "0" + day : day);
+    return (
+      d.getFullYear() +
+      "-" +
+      (m.length < 2 ? "0" + m : m) +
+      "-" +
+      (day.length < 2 ? "0" + day : day)
+    );
   }
 
   function setSelectValue(select, value) {
@@ -164,4 +171,109 @@
       closeModal();
     }
   });
+
+  /* ----- Фильтры таблицы заявок (максимальный тариф) ----- */
+
+  var requestsTable = document.getElementById("requests-table");
+  if (requestsTable) {
+    var rows = Array.prototype.slice.call(
+      requestsTable.querySelectorAll("tbody tr")
+    );
+
+    var filterStatus = document.getElementById("filter-status");
+    var filterDoctor = document.getElementById("filter-doctor");
+    var filterPeriod = document.getElementById("filter-period");
+    var searchInput = document.getElementById("search-requests");
+
+    function matchesStatus(row, statusValue) {
+      if (!statusValue || statusValue === "all") return true;
+      var rowStatus = row.getAttribute("data-status") || "";
+      return rowStatus === statusValue;
+    }
+
+    function matchesDoctor(row, doctorValue) {
+      if (!doctorValue || doctorValue === "all") return true;
+      var rowDoctor = row.getAttribute("data-doctor") || "";
+      return rowDoctor === doctorValue;
+    }
+
+    function matchesPeriod(row, periodValue) {
+      if (!periodValue || periodValue === "all") return true;
+      var createdAt = row.getAttribute("data-created-at");
+      if (!createdAt) return true;
+
+      var createdDate = new Date(createdAt);
+      if (isNaN(createdDate.getTime())) return true;
+
+      var now = new Date();
+      var diffMs = now - createdDate;
+      var diffDays = diffMs / (1000 * 60 * 60 * 24);
+
+      if (periodValue === "7d") {
+        return diffDays <= 7;
+      }
+      if (periodValue === "30d") {
+        return diffDays <= 30;
+      }
+      return true;
+    }
+
+    function matchesSearch(row, query) {
+      if (!query) return true;
+      var q = query.toLowerCase().trim();
+      if (!q) return true;
+
+      var cells = row.querySelectorAll("td");
+      var haystack = "";
+      if (cells[0]) haystack += " " + cells[0].textContent; // ID
+      if (cells[1]) haystack += " " + cells[1].textContent; // Name
+      if (cells[2]) haystack += " " + cells[2].textContent; // Service / doctor
+
+      haystack = haystack.toLowerCase();
+      return haystack.indexOf(q) !== -1;
+    }
+
+    function applyFilters() {
+      var statusVal = filterStatus ? filterStatus.value : "all";
+      var doctorVal = filterDoctor ? filterDoctor.value : "all";
+      var periodVal = filterPeriod ? filterPeriod.value : "all";
+      var searchVal = searchInput ? searchInput.value : "";
+
+      rows.forEach(function (row) {
+        var visible =
+          matchesStatus(row, statusVal) &&
+          matchesDoctor(row, doctorVal) &&
+          matchesPeriod(row, periodVal) &&
+          matchesSearch(row, searchVal);
+
+        row.style.display = visible ? "" : "none";
+      });
+    }
+
+    if (filterStatus) {
+      filterStatus.addEventListener("change", applyFilters);
+    }
+    if (filterDoctor) {
+      filterDoctor.addEventListener("change", applyFilters);
+    }
+    if (filterPeriod) {
+      filterPeriod.addEventListener("change", applyFilters);
+    }
+    if (searchInput) {
+      searchInput.addEventListener("input", applyFilters);
+    }
+
+    // первоначальное применение фильтров (на случай предустановленных значений)
+    applyFilters();
+  }
+
+  /* ----- Activity feed refresh (максимальный тариф) ----- */
+
+  var activityRefreshBtn = document.getElementById("activity-refresh-btn");
+  if (activityRefreshBtn) {
+    activityRefreshBtn.addEventListener("click", function () {
+      console.log("[dashboard] Activity feed refresh clicked");
+      // Здесь в будущем можно будет подтягивать реальные данные с сервера
+    });
+  }
 })();

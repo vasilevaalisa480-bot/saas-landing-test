@@ -47,6 +47,7 @@
     </aside>
 
     <div class="dashboard-main">
+      <!-- PROFILE & BILLING -->
       <section id="tab-profile" class="tab-content tab-content--active" role="tabpanel" aria-labelledby="tab-btn-profile">
         <h1 class="dashboard-panel-title">Profile &amp; billing</h1>
         <p class="dashboard-panel-lead">
@@ -64,35 +65,72 @@
           <div class="legal-note">
             Riverside Medical LLC · Tax ID: 12-3456789<br />
             1200 Harbor Way, Suite 400, Portland, OR 97201, United States<br />
-            Billing contact: finance@riverside-clinic.example · Invoices issued in USD, net 14 days.
+            Billing contact: <a href="mailto:finance@riverside-clinic.example">finance@riverside-clinic.example</a> · Invoices issued in USD, net 14 days.
           </div>
         </div>
 
         <div class="profile-block">
           <h3>Current plan</h3>
-          <div class="tariff-card">
-            <p class="tariff-name">Clinic Standard</p>
+          <div class="tariff-card tariff-card--business">
+            <p class="tariff-name">Clinic Business</p>
             <p class="tariff-meta">Paid through <strong>March 15, 2026</strong> · 42 days remaining on this billing cycle.</p>
             <ul class="tariff-list">
-              <li>Up to 25 staff seats with role-based access</li>
-              <li>Unlimited patient records and appointment scheduling</li>
-              <li>SMS / email reminders (fair-use bundle included)</li>
-              <li>Multi-location scheduling and shared patient directory</li>
-              <li>API access for website forms and third-party tools</li>
+              <li>Up to 50 staff seats with role-based access</li>
+              <li>Unlimited patient records, projects, and request streams</li>
+              <li>Advanced request routing, filters, and exports</li>
+              <li>Priority support with target response times</li>
+              <li>API / webhooks for integrations with external systems</li>
             </ul>
-            <p class="tariff-meta">Included requests this month: <strong>1,240 / 2,000</strong> used.</p>
+            <p class="tariff-meta">Included requests this month: <strong>3,240 / ∞</strong> used.</p>
           </div>
         </div>
 
         <a href="#" class="btn btn-primary">Payment / Renew</a>
       </section>
 
+      <!-- DASHBOARD OVERVIEW (MAX PLAN VIEW) -->
       <section id="tab-dashboard" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-dashboard" hidden>
         <h1 class="dashboard-panel-title">Overview</h1>
         <p class="dashboard-panel-lead">
           Snapshot of inbound requests and pipeline health for your medical center today.
         </p>
 
+        <!-- Account summary for Business plan -->
+        <section class="account-summary plan-business-only" aria-label="Account and plan summary">
+          <header class="account-summary__header">
+            <div>
+              <p class="account-summary__plan-label">Current plan</p>
+              <p class="account-summary__plan-name">Business</p>
+            </div>
+            <div class="account-summary__badge">Max features enabled</div>
+          </header>
+
+          <div class="account-summary__stats">
+            <div class="account-summary__stat">
+              <p class="account-summary__stat-label">Requests this month</p>
+              <p class="account-summary__stat-value">3,240 / ∞</p>
+            </div>
+            <div class="account-summary__stat">
+              <p class="account-summary__stat-label">Team members</p>
+              <p class="account-summary__stat-value">18 / 50</p>
+            </div>
+            <div class="account-summary__stat">
+              <p class="account-summary__stat-label">Projects / locations</p>
+              <p class="account-summary__stat-value">7 / ∞</p>
+            </div>
+            <div class="account-summary__stat">
+              <p class="account-summary__stat-label">Next renewal</p>
+              <p class="account-summary__stat-value">March 15, 2026</p>
+            </div>
+          </div>
+
+          <div class="account-summary__actions">
+            <button type="button" class="btn btn-outline btn-sm">Manage plan</button>
+            <button type="button" class="btn btn-text btn-sm">View invoices</button>
+          </div>
+        </section>
+
+        <!-- Key metrics row -->
         <div class="metrics-row">
           <article class="metric-card">
             <p class="metric-value">184</p>
@@ -115,42 +153,104 @@
             <p class="metric-hint">New this week: <strong>31</strong> requests.</p>
           </article>
         </div>
+
+        <!-- Extended metrics for Business plan -->
+        <section class="metrics-extended plan-business-only" aria-label="Extended metrics">
+          <article class="metric-card metric-card--wide">
+            <h2 class="metric-card__title">Channel breakdown (month)</h2>
+            <p class="metric-card__text">Website 54% · Phone 28% · Partner referrals 18%.</p>
+          </article>
+          <article class="metric-card metric-card--wide">
+            <h2 class="metric-card__title">Team performance snapshot</h2>
+            <p class="metric-card__text">Median first-response time: <strong>18 min</strong>. Median time to close: <strong>1.6 days</strong>.</p>
+          </article>
+        </section>
+
+        <!-- Activity feed (Business) -->
+        <section class="activity-feed plan-business-only" aria-label="Recent activity">
+          <header class="activity-feed__header">
+            <h2 class="activity-feed__title">Recent activity</h2>
+            <button type="button" class="btn btn-outline btn-sm" id="activity-refresh-btn">Refresh</button>
+          </header>
+          <ul class="activity-feed__list">
+            <li class="activity-feed__item">
+              <p class="activity-feed__text">Request #REQ-8841 updated (status: In progress).</p>
+              <span class="activity-feed__time">2 minutes ago</span>
+            </li>
+            <li class="activity-feed__item">
+              <p class="activity-feed__text">New user added: Maria Lopez (Coordinator).</p>
+              <span class="activity-feed__time">25 minutes ago</span>
+            </li>
+            <li class="activity-feed__item">
+              <p class="activity-feed__text">Request #REQ-8836 closed by Dr. Nguyen.</p>
+              <span class="activity-feed__time">1 hour ago</span>
+            </li>
+            <li class="activity-feed__item">
+              <p class="activity-feed__text">Plan upgraded to Business.</p>
+              <span class="activity-feed__time">Today, 09:12</span>
+            </li>
+            <li class="activity-feed__item">
+              <p class="activity-feed__text">New integration configured for website form.</p>
+              <span class="activity-feed__time">Yesterday</span>
+            </li>
+          </ul>
+        </section>
       </section>
 
+      <!-- REQUESTS -->
       <section id="tab-requests" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-requests" hidden>
         <h1 class="dashboard-panel-title">Requests</h1>
         <p class="dashboard-panel-lead">
           Patient inquiries and appointment requests from your website, ads, and front desk.
         </p>
 
-        <div class="requests-toolbar">
+        <!-- Extended filters for Business plan -->
+        <div class="requests-toolbar plan-business-only">
           <button type="button" class="btn btn-primary" id="open-request-modal">Новая заявка</button>
+
           <div class="field">
             <label for="filter-status">Status</label>
             <select id="filter-status" name="status">
-              <option>All</option>
-              <option>New</option>
-              <option>In progress</option>
-              <option>Closed</option>
+              <option value="all">All</option>
+              <option value="new">New</option>
+              <option value="in_progress">In progress</option>
+              <option value="done">Closed</option>
             </select>
           </div>
+
           <div class="field">
             <label for="filter-doctor">Doctor / service line</label>
             <select id="filter-doctor" name="doctor">
-              <option>All</option>
-              <option>Dr. Smith — General practice</option>
-              <option>Dr. Patel — Cardiology</option>
-              <option>Dr. Nguyen — Dermatology</option>
+              <option value="all">All</option>
+              <option value="smith">Dr. Smith — General practice</option>
+              <option value="patel">Dr. Patel — Cardiology</option>
+              <option value="nguyen">Dr. Nguyen — Dermatology</option>
             </select>
           </div>
-          <div class="field" style="flex: 1; min-width: 200px">
+
+          <div class="field">
+            <label for="filter-period">Period</label>
+            <select id="filter-period" name="period">
+              <option value="all">All time</option>
+              <option value="7d">Last 7 days</option>
+              <option value="30d">Last 30 days</option>
+            </select>
+          </div>
+
+          <div class="field requests-toolbar__search">
             <label for="search-requests">Search</label>
-            <input id="search-requests" type="search" name="q" placeholder="Patient name or request ID" autocomplete="off" />
+            <input
+              id="search-requests"
+              type="search"
+              name="q"
+              placeholder="Patient name or request ID"
+              autocomplete="off"
+            />
           </div>
         </div>
 
         <div class="requests-table-wrap">
-          <table class="requests-table">
+          <table class="requests-table" id="requests-table">
             <thead>
               <tr>
                 <th>ID</th>
@@ -163,7 +263,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr
+                data-status="new"
+                data-doctor="smith"
+                data-created-at="2026-02-10T09:12"
+              >
                 <td>#REQ-8841</td>
                 <td>James O’Connell</td>
                 <td>Annual check-up · Dr. Smith</td>
@@ -188,7 +292,11 @@
                   </button>
                 </td>
               </tr>
-              <tr>
+              <tr
+                data-status="in_progress"
+                data-doctor="patel"
+                data-created-at="2026-02-09T14:40"
+              >
                 <td>#REQ-8840</td>
                 <td>Maria Santos</td>
                 <td>ECG follow-up · Dr. Patel</td>
@@ -213,7 +321,11 @@
                   </button>
                 </td>
               </tr>
-              <tr>
+              <tr
+                data-status="in_progress"
+                data-doctor="nguyen"
+                data-created-at="2026-02-09T11:22"
+              >
                 <td>#REQ-8839</td>
                 <td>Wei Chen</td>
                 <td>Dermatology consult · Dr. Nguyen</td>
@@ -238,7 +350,11 @@
                   </button>
                 </td>
               </tr>
-              <tr>
+              <tr
+                data-status="done"
+                data-doctor="smith"
+                data-created-at="2026-02-08T10:05"
+              >
                 <td>#REQ-8838</td>
                 <td>Sophie Martin</td>
                 <td>Vaccination · Dr. Smith</td>
@@ -263,7 +379,11 @@
                   </button>
                 </td>
               </tr>
-              <tr>
+              <tr
+                data-status="new"
+                data-doctor="patel"
+                data-created-at="2026-02-08T08:50"
+              >
                 <td>#REQ-8837</td>
                 <td>David Okonkwo</td>
                 <td>New patient intake · Dr. Patel</td>
@@ -288,7 +408,11 @@
                   </button>
                 </td>
               </tr>
-              <tr>
+              <tr
+                data-status="done"
+                data-doctor="nguyen"
+                data-created-at="2026-02-07T15:33"
+              >
                 <td>#REQ-8836</td>
                 <td>Lisa Berg</td>
                 <td>Cosmetic consultation · Dr. Nguyen</td>
@@ -313,7 +437,11 @@
                   </button>
                 </td>
               </tr>
-              <tr>
+              <tr
+                data-status="in_progress"
+                data-doctor="smith"
+                data-created-at="2026-02-07T09:18"
+              >
                 <td>#REQ-8835</td>
                 <td>Tomáš Novák</td>
                 <td>Physiotherapy referral · Dr. Smith</td>
@@ -343,6 +471,7 @@
         </div>
       </section>
 
+      <!-- ANALYTICS -->
       <section id="tab-analytics" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-analytics" hidden>
         <h1 class="dashboard-panel-title">Analytics</h1>
         <p class="dashboard-panel-lead">
@@ -392,6 +521,7 @@
         </div>
       </section>
 
+      <!-- SETTINGS -->
       <section id="tab-settings" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-settings" hidden>
         <h1 class="dashboard-panel-title">Settings &amp; integration</h1>
         <p class="dashboard-panel-lead">
@@ -415,7 +545,7 @@
           </p>
           <div class="code-block">
             <pre><code>&lt;form action="https://api.leadoscope.example/v1/clinics/YOUR_CLINIC_ID/leads"
-      method="post"&gt;
+  method="post"&gt;
   &lt;input type="hidden" name="api_key" value="YOUR_PUBLIC_FORM_KEY" /&gt;
   &lt;label&gt;Full name &lt;input name="patient_name" required /&gt;&lt;/label&gt;
   &lt;label&gt;Phone &lt;input name="phone" type="tel" required /&gt;&lt;/label&gt;
@@ -439,7 +569,7 @@
     </div>
   </main>
 
-  <!-- Модальное окно: карточка заявки (универсальный UI) -->
+  <!-- Request modal -->
   <div
     class="request-modal"
     id="request-modal"
@@ -563,10 +693,19 @@
       </div>
 
       <footer class="request-modal__footer">
-        <button type="button" class="request-modal__button request-modal__button--secondary" id="request-modal-cancel" data-request-modal-close">
+        <button
+          type="button"
+          class="request-modal__button request-modal__button--secondary"
+          id="request-modal-cancel"
+          data-request-modal-close
+        >
           Отмена
         </button>
-        <button type="button" class="request-modal__button request-modal__button--primary" id="request-modal-save">
+        <button
+          type="button"
+          class="request-modal__button request-modal__button--primary"
+          id="request-modal-save"
+        >
           Сохранить
         </button>
       </footer>

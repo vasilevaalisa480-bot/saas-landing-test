@@ -68,6 +68,8 @@
   font-size: 0.875rem;
 }
 
+/* Layout */
+
 .dashboard-layout {
   flex: 1;
   max-width: 1200px;
@@ -131,6 +133,8 @@
   box-shadow: 0 4px 14px rgba(18, 24, 38, 0.04);
 }
 
+/* Tabs */
+
 .tab-content {
   display: none;
 }
@@ -138,6 +142,8 @@
 .tab-content--active {
   display: block;
 }
+
+/* Panel titles */
 
 .dashboard-panel-title {
   margin: 0 0 8px;
@@ -151,6 +157,8 @@
   font-size: 0.98rem;
   max-width: 62ch;
 }
+
+/* Generic sections */
 
 .settings-section,
 .profile-block,
@@ -181,6 +189,8 @@
   line-height: 1.55;
 }
 
+/* Legal note */
+
 .legal-note {
   font-size: 0.875rem;
   color: var(--muted);
@@ -191,6 +201,8 @@
   border-radius: 10px;
   max-width: 100%;
 }
+
+/* Tariff card */
 
 .tariff-card {
   border: 1px solid var(--border);
@@ -218,6 +230,16 @@
   line-height: 1.65;
   font-size: 0.95rem;
 }
+
+/* Business variant */
+
+.tariff-card--business {
+  border-color: rgba(71, 112, 255, 0.32);
+  background: radial-gradient(circle at 0 0, #f0f4ff 0, #fafcff 40%, var(--surface) 100%);
+  box-shadow: 0 8px 30px rgba(31, 63, 147, 0.12);
+}
+
+/* Metrics */
 
 .metrics-row {
   display: grid;
@@ -257,6 +279,42 @@
   line-height: 1.45;
 }
 
+/* Extended metrics for Business */
+
+.metrics-extended {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.metric-card--wide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #f8fafc;
+}
+
+.metric-card__title {
+  margin: 0 0 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.metric-card__text {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+/* Plan gating container (на будущее, если нужно скрывать для других тарифов) */
+
+.plan-business-only {
+  /* Можно использовать .plan-business-only { display:none; } для других планов */
+}
+
+/* Requests toolbar */
+
 .requests-toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -279,6 +337,13 @@
   color: var(--muted);
 }
 
+.requests-toolbar__search {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* Form controls in dashboard */
+
 .dashboard-page select,
 .dashboard-page input[type="search"],
 .dashboard-page input[type="text"] {
@@ -295,6 +360,8 @@
 .dashboard-page input[type="search"] {
   min-width: 200px;
 }
+
+/* Requests table */
 
 .requests-table-wrap {
   overflow-x: auto;
@@ -342,6 +409,8 @@
   white-space: nowrap;
 }
 
+/* Status pills */
+
 .status-pill {
   display: inline-block;
   padding: 3px 10px;
@@ -364,6 +433,8 @@
   background: #e8f5ec;
   color: #1d6b3a;
 }
+
+/* Analytics */
 
 .analytics-filters {
   display: flex;
@@ -447,6 +518,8 @@
   background: linear-gradient(90deg, var(--primary) 0%, #6b9cff 100%);
 }
 
+/* Settings */
+
 .api-key-row {
   display: flex;
   flex-wrap: wrap;
@@ -491,6 +564,72 @@
   line-height: 1.6;
 }
 
+/* Activity feed (Business) */
+
+.activity-feed {
+  margin-top: 24px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 16px 16px 14px;
+}
+
+.activity-feed__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.activity-feed__title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.activity-feed__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.activity-feed__item {
+  padding: 8px 0;
+  border-top: 1px dashed rgba(148, 163, 184, 0.4);
+}
+
+.activity-feed__item:first-child {
+  border-top: none;
+}
+
+.activity-feed__text {
+  margin: 0 0 2px;
+  font-size: 0.85rem;
+  color: var(--text);
+}
+
+.activity-feed__time {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* Helpers */
+
+.btn-text {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.btn-text:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+
 @media (max-width: 900px) {
   .dashboard-layout {
     flex-direction: column;
@@ -517,8 +656,16 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .metrics-extended {
+    grid-template-columns: 1fr;
+  }
+
   .analytics-stats {
     grid-template-columns: 1fr;
+  }
+
+  .activity-feed {
+    margin-top: 18px;
   }
 }
 
@@ -530,5 +677,14 @@
   .requests-toolbar input[type="search"] {
     min-width: 100%;
     width: 100%;
+  }
+
+  .requests-toolbar {
+    align-items: stretch;
+  }
+
+  .requests-toolbar .field,
+  .requests-toolbar__search {
+    flex: 1 1 100%;
   }
 }
