@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Leadoscope - B2B SaaS Platform</title>
   <link rel="stylesheet" href="main.css">
+  <script src="login-modal.js" defer></script>
   </head>
   <body>
   <header class="topbar">
@@ -14,11 +15,11 @@
       </a>
       <div class="nav-wrap">
         <nav class="nav" aria-label="Main navigation">
-          <a href="#features">Features</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#faq">FAQ</a>
-          <a href="#">Sign In</a>
-        </nav>
+  <a href="#features">Features</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#faq">FAQ</a>
+  <a href="#" class="js-open-login">Sign In</a>
+</nav>
         <a href="#" class="btn btn-primary">Try for free</a>
       </div>
     </div>
@@ -150,5 +151,73 @@
       <div>B2B SaaS platform for growing teams.</div>
     </div>
   </footer>
+  <!-- Login modal -->
+<div
+  class="login-modal"
+  id="login-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-hidden="true"
+  aria-labelledby="login-modal-title"
+>
+  <div class="login-modal__backdrop" data-login-modal-close tabindex="-1"></div>
+  <div class="login-modal__card">
+    <header class="login-modal__header">
+      <h2 class="login-modal__title" id="login-modal-title">Sign in to your clinic account</h2>
+      <button
+        type="button"
+        class="login-modal__close"
+        data-login-modal-close
+        aria-label="Close sign in form"
+      >
+        &times;
+      </button>
+    </header>
+
+    <div class="login-modal__body">
+      <form class="login-form" id="login-form" novalidate>
+        <div class="login-form__field">
+          <label class="login-form__label" for="login-email">Work email</label>
+          <input
+            class="login-form__input"
+            type="email"
+            id="login-email"
+            name="email"
+            placeholder="you@clinic.example"
+            autocomplete="email"
+            required
+          />
+        </div>
+
+        <div class="login-form__field">
+          <label class="login-form__label" for="login-password">Password</label>
+          <input
+            class="login-form__input"
+            type="password"
+            id="login-password"
+            name="password"
+            placeholder="Your password"
+            autocomplete="current-password"
+            required
+          />
+        </div>
+
+        <div class="login-form__row">
+          <label class="login-form__checkbox">
+            <input type="checkbox" name="remember" />
+            <span>Keep me signed in</span>
+          </label>
+          <a href="#" class="login-form__link">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary login-form__submit">Sign in</button>
+
+        <p class="login-form__hint">
+          No account yet? <a href="#cta">Request access to Leadoscope</a>.
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
 </body>
 </html>

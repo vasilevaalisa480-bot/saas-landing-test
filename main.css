@@ -360,3 +360,147 @@
       padding-top: 46px;
     }
   }
+  /* Login modal — общая для всех публичных страниц */
+
+.login-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-modal.is-open {
+  display: flex;
+}
+
+.login-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+}
+
+.login-modal__card {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 32px, 420px);
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.35);
+  padding: 18px 18px 20px;
+}
+
+.login-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.login-modal__title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.login-modal__close {
+  border: none;
+  background: transparent;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--muted);
+}
+
+.login-modal__close:hover {
+  color: var(--text);
+}
+
+.login-modal__body {
+  margin-top: 4px;
+}
+
+.login-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.login-form__label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.login-form__input {
+  font: inherit;
+  font-size: 0.95rem;
+  padding: 9px 11px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  color: var(--text);
+}
+
+.login-form__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 4px 0 12px;
+}
+
+.login-form__checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.login-form__checkbox input {
+  width: 14px;
+  height: 14px;
+}
+
+.login-form__link {
+  font-size: 0.85rem;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.login-form__link:hover {
+  text-decoration: underline;
+}
+
+.login-form__submit {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.login-form__hint {
+  margin: 10px 0 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.login-form__hint a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.login-form__hint a:hover {
+  text-decoration: underline;
+}
+
+/* Блокировка скролла под модалкой */
+body.login-modal--locked {
+  overflow: hidden;
+}
