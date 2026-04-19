@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ — SaaS сервис</title>
+  <link rel="stylesheet" href="main.css" />
+  <link rel="stylesheet" href="faq.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="index.html" class="logo" aria-label="Leadoscope — home">
+        <img src="img/logo.png" alt="Leadoscope" decoding="async" />
+      </a>
+      <div class="nav-wrap">
+        <nav class="nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="service.html">Service</a>
+          <a href="index.html#pricing">Pricing</a>
+          <a href="faq.html" aria-current="page">FAQ</a>
+        </nav>
+        <a href="#" class="btn btn-outline">Sign in</a>
+        <a href="index.html" class="btn btn-primary">Get started</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <section class="hero">
+        <h1>Часто задаваемые вопросы</h1>
+        <p>
+          Собрали ответы на самые популярные вопросы о работе сервиса, тарифах и поддержке.
+          Если не нашли нужную информацию — напишите нам через форму ниже.
+        </p>
+      </section>
+
+      <section class="faq" aria-label="Список часто задаваемых вопросов">
+        <article class="faq__item">
+          <button class="faq__question" type="button" aria-expanded="false">
+            <span>Как работает сервис?</span>
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq__answer">
+            <p>
+              Сервис помогает организовать рабочие процессы в одном месте: вы создаете аккаунт,
+              настраиваете рабочее пространство и сразу получаете доступ к основным инструментам.
+              Все изменения сохраняются автоматически и доступны с любого устройства.
+            </p>
+          </div>
+        </article>
+
+        <article class="faq__item">
+          <button class="faq__question" type="button" aria-expanded="false">
+            <span>Что входит в бесплатный тариф?</span>
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq__answer">
+            <p>
+              В бесплатном тарифе доступны базовые функции для старта, ограниченный объем хранения
+              данных и стандартная поддержка. Это удобный вариант, чтобы протестировать продукт и
+              понять, подходит ли он под ваши задачи.
+            </p>
+          </div>
+        </article>
+
+        <article class="faq__item">
+          <button class="faq__question" type="button" aria-expanded="false">
+            <span>Могу ли я поменять тариф позже?</span>
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq__answer">
+            <p>
+              Да, вы можете перейти на другой тариф в любой момент в настройках аккаунта.
+              Изменения вступают в силу сразу или с начала следующего расчетного периода —
+              в зависимости от выбранного плана.
+            </p>
+          </div>
+        </article>
+
+        <article class="faq__item">
+          <button class="faq__question" type="button" aria-expanded="false">
+            <span>Как отключить автоплатежи?</span>
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq__answer">
+            <p>
+              Отключить автопродление можно в разделе оплаты вашего профиля.
+              После отключения текущий тариф останется активным до конца оплаченного периода,
+              а затем аккаунт перейдет на бесплатный режим.
+            </p>
+          </div>
+        </article>
+
+        <article class="faq__item">
+          <button class="faq__question" type="button" aria-expanded="false">
+            <span>Можно ли использовать сервис командой?</span>
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq__answer">
+            <p>
+              Да, сервис поддерживает командную работу: можно приглашать участников,
+              распределять роли и настраивать уровни доступа. Это помогает централизованно
+              управлять процессами и безопасно работать над общими задачами.
+            </p>
+          </div>
+        </article>
+
+        <article class="faq__item">
+          <button class="faq__question" type="button" aria-expanded="false">
+            <span>Как вы обрабатываете мои данные?</span>
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq__answer">
+            <p>
+              Мы используем современные меры защиты данных: шифрование соединения,
+              контроль доступа и регулярные обновления безопасности. Данные обрабатываются
+              только для предоставления сервиса в рамках действующей политики конфиденциальности.
+            </p>
+          </div>
+        </article>
+
+        <article class="faq__item">
+          <button class="faq__question" type="button" aria-expanded="false">
+            <span>Что делать, если у меня возникли вопросы по работе сервиса?</span>
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq__answer">
+            <p>
+              Вы можете обратиться в поддержку через форму ниже или написать нам из личного кабинета.
+              Мы стараемся отвечать максимально быстро и помогать с любыми вопросами:
+              от настройки аккаунта до рекомендаций по работе.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <section class="contact-card" aria-label="Форма обратной связи">
+        <h2>Остались вопросы?</h2>
+        <p>Вы можете задать их здесь.</p>
+
+        <form id="questionForm" class="form">
+          <div class="form__group">
+            <label for="name">Имя</label>
+            <input id="name" name="name" type="text" placeholder="Введите ваше имя" required />
+          </div>
+
+          <div class="form__group">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="Введите ваш email" required />
+          </div>
+
+          <div class="form__group">
+            <label for="question">Ваш вопрос</label>
+            <textarea
+              id="question"
+              name="question"
+              placeholder="Опишите ваш вопрос"
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit">Отправить вопрос</button>
+          <div id="formSuccess" class="form__success" role="status" aria-live="polite">
+            Спасибо! Мы получили ваш вопрос.
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2026 Leadoscope. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#">Privacy policy</a>
+        <a href="#">Terms of use</a>
+        <a href="contacts.html">Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="faq.js"></script>
+</body>
+</html>
