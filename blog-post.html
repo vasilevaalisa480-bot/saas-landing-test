@@ -8,25 +8,10 @@
   <link rel="stylesheet" href="main.css" />
   <link rel="stylesheet" href="blog.css" />
 <script src="login-modal.js" defer></script>
-</head>
-<body>
-  <header class="topbar">
-    <div class="container topbar-inner">
-      <a href="index.html" class="logo" aria-label="Leadoscope — home">
-        <img src="img/logo.png" alt="Leadoscope" decoding="async" />
-      </a>
-      <div class="nav-wrap">
-        <nav class="nav" aria-label="Main navigation">
-  <a href="#features">Features</a>
-  <a href="#pricing">Pricing</a>
-  <a href="#faq">FAQ</a>
-  <a href="#" class="js-open-login">Sign In</a>
-</nav>
-        <a href="#" class="btn btn-primary">Try for free</a>
-      </div>
-    </div>
-  </header>
-
+<script src="layout.js" defer></script>
+  </head>
+  <body>
+  <div id="site-header"></div>
   <main>
     <article class="post-layout" itemscope itemtype="https://schema.org/Article">
       <header class="post-hero">
@@ -146,13 +131,7 @@
       </div>
     </article>
   </main>
-
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div>© 2026 Leadoscope. All rights reserved.</div>
-      <div>B2B SaaS platform for growing teams.</div>
-    </div>
-  </footer>
+<div id="site-footer"></div>
    <!-- Login modal -->
 <div
   class="login-modal"

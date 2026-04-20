@@ -4,7 +4,6 @@
   var modal = document.getElementById("login-modal");
   if (!modal) return;
 
-  var openButtons = document.querySelectorAll(".js-open-login");
   var closeButtons = modal.querySelectorAll("[data-login-modal-close]");
   var form = document.getElementById("login-form");
   var firstInput = document.getElementById("login-email");
@@ -13,7 +12,9 @@
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
     document.body.classList.add("login-modal--locked");
-    if (firstInput) firstInput.focus();
+    if (firstInput) {
+      firstInput.focus();
+    }
   }
 
   function closeModal() {
@@ -22,11 +23,13 @@
     document.body.classList.remove("login-modal--locked");
   }
 
-  openButtons.forEach(function (btn) {
-    btn.addEventListener("click", function (e) {
+  // Главное изменение: делегирование события
+  document.addEventListener("click", function (e) {
+    var trigger = e.target.closest(".js-open-login");
+    if (trigger) {
       e.preventDefault();
       openModal();
-    });
+    }
   });
 
   closeButtons.forEach(function (btn) {
